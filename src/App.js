@@ -11,12 +11,14 @@ const API_KEY = '57f2826191d13aed90ab2d2abd4d2a06';
 class App extends Component {
   state = {
     city: undefined,
+    country: undefined,
     temperature: undefined,
     temperatureMax: undefined,
     temperatureMin: undefined,
     weather: undefined,
     date: undefined,
-    error: undefined
+    error: undefined,
+
   }
 
   getWeather = async (e) => {
@@ -30,15 +32,17 @@ class App extends Component {
       console.log(data)
       this.setState({
       city: data.city.name,
+      country: data.city.country,
       temperature: data.list[0].main.temp,
       temperatureMax: data.list[0].main.temp_max,
       temperatureMin: data.list[0].main.temp_min,
       weather: data.list[0].weather[0].description,
-      date: data.list[0].dt_txt
+      date: data.list[0].dt_txt,
       })
     } else {
       this.setState({
         city: undefined,
+        country: undefined,
         temperature: undefined,
         temperatureMax: undefined,
         temperatureMin: undefined,
@@ -49,7 +53,9 @@ class App extends Component {
     }
   }
 
+
   render() {
+
     return (
       <div>
         <div className='wrapper'>
@@ -60,9 +66,11 @@ class App extends Component {
                   <Titles />
                 </div>
                 <div className='col-xs-7 form-container'>
-                  <Form submitted={this.getWeather} />
+                  <Form 
+                    submitted={this.getWeather} />
                   <Weather 
                     city={this.state.city}
+                    country={this.state.country}
                     temperature={this.state.temperature}
                     temperatureMax={this.state.temperatureMax}
                     temperatureMin={this.state.temperatureMin}

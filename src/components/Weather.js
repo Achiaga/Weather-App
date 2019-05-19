@@ -6,7 +6,7 @@ const weather = props => {
             <div className='weather__info'>
                 {props.temperature ? (
                 <div>
-                <p className='weather__key'>City:<span className='weather__value'> {props.city}</span></p>
+                <p className='weather__key'>City:<span className='weather__value'> {props.city}, {props.country}</span></p>
                 <p className='weather__key'>Date:<span className='weather__value'> {props.date}</span></p>
                 <p className='weather__key'>Temperature: <span className='weather__value'> {props.temperature}</span> </p>
                 <p className='weather__key'>Temperature MAX:<span className='weather__value'> {props.temperatureMax}</span></p>
