@@ -1,15 +1,14 @@
 import React from 'react';
  
-class Burger extends React.Component { 
-    render ()  {
+const form = props => { 
         return (
-            <form onSubmit={this.props.submitted} >
+            <form onSubmit={props.submitted} >
                 <input type='text' name='city' placeholder='city' />
                 <input type='text' name='country' placeholder='country' />
-                <button>Search!</button>
+                <button disabled={props.disabled}>Get Weather!</button>
             </form>
         )
     }
- }
-export default Burger;
+
+export default form;
 
