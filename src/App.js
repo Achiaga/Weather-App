@@ -33,9 +33,9 @@ class App extends Component {
       this.setState({
       city: data.city.name,
       country: data.city.country,
-      temperature: data.list[0].main.temp,
-      temperatureMax: data.list[0].main.temp_max,
-      temperatureMin: data.list[0].main.temp_min,
+      temperature: (Number(data.list[0].main.temp) - 273).toFixed(2),
+      temperatureMax: (Number(data.list[0].main.temp_max) - 273).toFixed(2),
+      temperatureMin: (Number(data.list[0].main.temp_min) - 273).toFixed(2),
       weather: data.list[0].weather[0].description,
       date: data.list[0].dt_txt,
       })
