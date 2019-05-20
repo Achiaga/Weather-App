@@ -12,6 +12,7 @@ const weather = props => {
                 <p className='weather__key'>Temperature MAX:<span className='weather__value'> {props.temperatureMax} °C</span></p>
                 <p className='weather__key'>Temperature MIN:<span className='weather__value'> {props.temperatureMin} °C</span></p>
                 <p className='weather__key'>Weather:<span className='weather__value'> {props.weather}</span></p>
+                <p className='weather__key'>Pollution Quality:<span style={{color: 'orange'}} className='weather__value'> {props.pollution}</span></p>
                 </div>
 
                 ) : <p className='weather__error'>{props.error}</p>}
