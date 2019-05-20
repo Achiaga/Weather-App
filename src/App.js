@@ -6,6 +6,7 @@ import Weather from './components/Weather'
 
 import './App.css';
 
+
 const API_KEY = '57f2826191d13aed90ab2d2abd4d2a06';
 const API_TOKEN = 'd6cf9d4e250f2fb9e0889fe261dd26b158b7c7e4';
 
@@ -27,7 +28,7 @@ class App extends Component {
     e.preventDefault();
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
-    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&APPID=${API_KEY}`)
+    const api_call = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&APPID=${API_KEY}`)
     const data = await api_call.json();
 
     const api_token_call = await fetch(`https://api.waqi.info/feed/${city}/?token=${API_TOKEN}`)

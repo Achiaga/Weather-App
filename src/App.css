@@ -92,6 +92,11 @@ button {
   font-weight: 100;
 }
 
+button:hover{
+  background-color: #e73825;
+  font-weight: 150;
+}
+
 button:active {
   outline: none;
 }
