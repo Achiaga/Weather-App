@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+
 
 import Titles from './components/Titles'
 import Form from './components/Form'
 import Weather from './components/Weather'
+import store from './store'
+
 
 import './App.css';
 
@@ -66,6 +70,7 @@ class App extends Component {
   render() {
 
     return (
+      <Provider store={store}>
       <div>
         <div className='wrapper'>
           <div className='main'>
@@ -93,6 +98,7 @@ class App extends Component {
           </div>
         </div>  
       </div>
+      </Provider>
     );
   }
 }

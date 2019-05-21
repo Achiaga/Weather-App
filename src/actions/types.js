@@ -1,0 +1,3 @@
+export const REQUEST_WEATHER = 'REQUEST_WEATHER'
+export const REQUEST_POLLUTION = 'REQUEST_POLLUTION'
+export const ERROR = 'ERROR';
