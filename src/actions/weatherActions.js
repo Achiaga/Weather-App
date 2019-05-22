@@ -7,55 +7,57 @@ export const fetchGame = id => async dispatch => {
         
         const API_KEY = '57f2826191d13aed90ab2d2abd4d2a06';
 
-        const api_call = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&APPID=${API_KEY}`)
+        // const api_call = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&APPID=${API_KEY}`)
+        const api_call = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=London,uk&APPID=${API_KEY}`)
+        const data = await api_call.json();
 
-
-		const gameInfo = {
-			gameName: res.data.data.names.international,
-			gameImg: res.data.data.assets['cover-medium'].uri,
-			imgs: res.data.data,
+		const weatherInfo = {
+            city: data.city.name,
+            country: data.city.country,
+            temperature: (Number(data.list[0].main.temp) - 273).toFixed(2),
+            temperatureMax: (Number(data.list[0].main.temp_max) - 273).toFixed(2),
+            temperatureMin: (Number(data.list[0].main.temp_min) - 273).toFixed(2),
+            weather: data.list[0].weather[0].description,
+            date: data.list[0].dt_txt,
 		};
-		if (resRuns.data.data.length < 1) {
-			dispatch({
-				type: NO_RECEIVE_GAME,
-				payload: { game: { ...gameInfo } },
-			});
-			return;
-		}
-		const videosUrl = resRuns.data.data[0].videos.links[0].uri;
-		const playerUri = resRuns.data.data[0].players[0].uri;
+		// if (resRuns.data.data.length < 1) {
+		// 	dispatch({
+		// 		type: NO_RECEIVE_GAME,
+		// 		payload: { game: { ...gameInfo } },
+		// 	});
+		// 	return;
+		// }
+		// const videosUrl = resRuns.data.data[0].videos.links[0].uri;
+		// const playerUri = resRuns.data.data[0].players[0].uri;
 
-		const resPlayer = await axios.get(playerUri);
+		// const resPlayer = await axios.get(playerUri);
 
-		const runsList = resRuns.data.data;
-		const playerData = resPlayer.data.data;
+		// const runsList = resRuns.data.data;
+		// const playerData = resPlayer.data.data;
 
-		const playerInfo = {};
+		// const playerInfo = {};
 
-		if (playerData.name) {
-			playerInfo['name'] = playerData.name;
-		}
-		if (playerData.names) {
-			playerInfo['name'] = playerData.names.international;
-		} else {
-			playerInfo['name'] = 'No name';
-		}
-		const runs = {
-			game: runsList[0].game,
-			category: runsList[0].category,
-			date: runsList[0].date,
-			comment: runsList[0].comment,
-			realtime: runsList[0].times.realtime_t,
-		};
+		// if (playerData.name) {
+		// 	playerInfo['name'] = playerData.name;
+		// }
+		// if (playerData.names) {
+		// 	playerInfo['name'] = playerData.names.international;
+		// } else {
+		// 	playerInfo['name'] = 'No name';
+		// }
+		// const runs = {
+		// 	game: runsList[0].game,
+		// 	category: runsList[0].category,
+		// 	date: runsList[0].date,
+		// 	comment: runsList[0].comment,
+		// 	realtime: runsList[0].times.realtime_t,
+		// };
 
 		dispatch({
 			type: RECEIVE_GAME,
 			payload: {
-				game: { ...gameInfo },
-				runs,
-				playerInfo: playerInfo,
-				videoUrl: videosUrl,
-				error: false,
+                weahter: { ...weatherInfo },
+                error: false
 			},
 		});
 	} catch (e) {

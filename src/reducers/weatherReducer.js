@@ -1,9 +1,14 @@
-import { REQUEST_GAMES, RECEIVE_GAMES } from '../action/types';
-import { REQUEST_WEATHER } from '../actions/types';
+import { REQUEST_WEATHER, RECEIVE_WEATHER } from '../actions/types';
 
 const INITIAL_STATE = {
-	city: undefined,
-	country: undefined,
+    isFetching: false,
+    temperature: undefined,
+    temperatureMax: undefined,
+    temperatureMin: undefined,
+    weather: undefined,
+    date: undefined,
+    pollution: undefined,
+    error: undefined,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -14,11 +19,11 @@ export default (state = INITIAL_STATE, action) => {
 				isFetching: true,
 			};
 		}
-		case RECEIVE_GAMES: {
+		case RECEIVE_WEATHER: {
 			return {
 				...state,
 				isFetching: false,
-				gamesData: action.payload,
+				weatherData: action.payload,
 			};
 		}
 		default:
